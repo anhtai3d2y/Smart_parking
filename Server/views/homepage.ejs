@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Socket IO</title>
+
+    <script src="jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        //ket noi sv
+        var socket = io("http://localhost:3030");
+
+        socket.on("Server-send-data", function(data) {
+            $("#noidung").append(data + ", ");
+        });
+
+        $(document).ready(function() {
+            $("#mrA").click(function() {
+                socket.emit("Client-send-data", "Hello");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="mrA">Click send</div>
+    <h2 id="noidung"></h2>
+</body>
+
+</html>
